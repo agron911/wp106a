@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+input { width:30px }      
+    </style>
+    <title>小時鐘</title>
+  </head>
+  <body>
+<script>
+var counter=10;
+var timeoutId= null
+function showCounter() {
+  var counterLabel = document.getElementById('counter')
+  
+  counterLabel.innerText = counter 
+   counter --
+  if (counter >=0)
+  timeoutId=setTimeout(showCounter,1000)
+  else {
+document.getElementById('message').innerText="Time's Up"
+    counter =10
+  counterLabel.innerText= counter  
+}
+
+}
+
+function start(){
+timeoutId=setTimeout(showCounter,1000)
+}  
+function stop(){
+clearTimeout(timeoutId)
+}
+</script>  
+  <center>  
+    <label id="counter">10</label><br/>
+    <button id="start" onclick="start()">start</button>
+    <button id="stop" onclick="stop()">stop</button>
+    <label id="message"></label><br/>
+  </center></body>
+</html>
