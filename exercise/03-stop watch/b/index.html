@@ -14,12 +14,11 @@ var timeoutId= null
 function showCounter() {
   var counterLabel = document.getElementById('counter')
   
-  counterLabel.innerText = counter 
    counter --
   if (counter >=0)
   timeoutId=setTimeout(showCounter,1000)
   else {
-document.getElementById('message').innerText="Time's Up"
+ document.getElementById('message').innerText="Time's Up"
     counter =10
   counterLabel.innerText= counter  
 }
