@@ -23,17 +23,6 @@
         "zip",
         "dmg"
       ]
-    },
-    "publish": [{
-      "provider": "github",
-      "owner": "ccckmit",
-      "repo": "electron-updater-example"
-    }],
-    "build": {
-      "publish": [{
-          "provider": "github",
-          "owner": "iffy",
-          "repo": "electron-updater-example"
-      }]    
+    }
   }
 }

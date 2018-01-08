@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+ <html>
+    <head>
+        <title>110510517簡易小畫家</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> 
+        </script>
+        <style>
+            body,input { font-size: 9pt; }
+            #drawframe,#drawline { clear: both; }
+            .option
+            {
+                float: left; width: 25px; height: 25px; border: 1px solid #bbbbbb;
+                margin-right: 0.1px; margin-bottom: 4px;
+            }
+            .active { border: 2px solid black; }
+            img.output { border: 2px solid black; }
+            #drawarea { cursor: crosshair; }
+        </style>
+        <script>
+
+          
+
+            $(function () {
+                var $dcoloroption = $("#drawcolor .option");
+                var $dlineoption = $("#drawline .option");
+                var $canvas = $("#drawarea");
+                var context = $canvas[0].getContext("2d");
+                var drawMode = false;
+                $dcoloroption.click(function () {
+                    $dcoloroption.removeClass("active");
+                    $(this).addClass("active");
+                    pencolor = this.style.backgroundColor;
+                    $dlineoption.children("div").css("background-color", pencolor);
+                }).first().click();
+
+                $dlineoption.click(function () {
+                    $dlineoption.removeClass("active");
+                    $(this).addClass("active");
+                    penwidth = $(this).children("div").css("width").replace("px", "");     
+                }).click();
+              
+                context.lineCap = "round";
+                context.fillStyle = "white"; 
+                context.fillRect(0,0,0,0);
+
+                $canvas.mousedown(function (e) {
+                  context.beginPath();
+                  context.strokeStyle = pencolor;
+                  context.lineWidth = penwidth;
+                  context.moveTo(e.pageX - $canvas.position().left, e.pageY - $canvas.position().top);
+                    drawMode = true;
+                })
+                .mousemove(function (e) {
+                    if (drawMode) {
+                        context.lineTo(e.pageX - $canvas.position().left, e.pageY - $canvas.position().top);
+                        context.stroke();
+                    }
+                })
+                .mouseup(function (e) {
+                    drawMode = false;
+                });
+               
+                
+
+                $("#createImage").click(function () {
+                    $("#Output").html(
+                    $("<img />", { src: $canvas[0].toDataURL(),
+                        "class": "output"
+                    }));
+                });
+            });
+            function clear(){
+              $("canvas").clearCanvas()
+            }
+        </script>
+    </head>
+    <body>
+      
+    <div id="drawcolor"  >
+        <div class="option" style="background-color: #000000	 "></div>
+        <div class="option" style="background-color: #3C3C3C"></div>
+        <div class="option" style="background-color: #5B5B5B	"></div>
+        <div class="option" style="background-color: #7B7B7B	"></div>
+        <div class="option" style="background-color: #8E8E8E	"></div>
+        <div class="option" style="background-color: #9D9D9D	"></div>
+        <div class="option" style="background-color: #ADADAD	"></div>
+        <div class="option active" style="background-color: #930000	 "></div>
+        <div class="option" style="background-color: #844200		"></div>
+        <div class="option" style="background-color: #9F5000	"></div>
+        <div class="option" style="background-color: #BB5E00	"></div>
+        <div class="option" style="background-color: #D26900	"></div>
+        <div class="option" style="background-color: #FF8000	"></div>
+        <div class="option" style="background-color: #FF9224	"></div>
+        <div class="option" style="background-color: #FFA042	"></div>
+        <div class="option" style="background-color: #FFAF60	"></div>
+        <div class="option" style="background-color: #FFBB77	"></div>
+        <div class="option" style="background-color: #FFC78E"></div>
+        <div class="option" style="background-color: #804040	"></div>
+        <div class="option" style="background-color: #984B4B	"></div>
+        <div class="option" style="background-color: #AD5A5A	"></div>
+        <div class="option" style="background-color: #B87070	"></div>
+        <div class="option" style="background-color: #C48888	"></div>
+        <div class="option" style="background-color: #CF9E9E	"></div>
+        <div class="option" style="background-color: #aE0000	"></div>
+        <div class="option" style="background-color: #CE0000	"></div>
+        <div class="option" style="background-color: #EA0000	 "></div>
+        <div class="option" style="background-color: #FF0000	"></div>
+        <div class="option" style="background-color: #FF2D2D	"></div>
+        <div class="option" style="background-color: #FF5151	"></div>
+        <div class="option" style="background-color: #FF9797	"></div><br /><br /><br />
+        <div class="option" style="background-color: #9F0050		"></div>
+        <div class="option" style="background-color: #BF0060	"></div>
+        <div class="option" style="background-color: #D9006C	"></div>
+        <div class="option" style="background-color: #FF0080	"></div>
+        <div class="option" style="background-color: #FF60AF	"></div>
+        <div class="option" style="background-color: #FF79BC	"></div>
+        <div class="option" style="background-color: #FF95CA	"></div>
+        <div class="option" style="background-color: #930093	"></div>
+        <div class="option" style="background-color: #AE00AE	"></div>
+        <div class="option" style="background-color: #D200D2	"></div>
+        <div class="option" style="background-color: #E800E8	"></div>
+        <div class="option" style="background-color: #FF00FF	"></div>
+        <div class="option" style="background-color: #FF44FF	"></div>
+        <div class="option" style="background-color: #FF77FF	"></div>
+        <div class="option" style="background-color: #FF8EFF	"></div>
+        <div class="option" style="background-color: #5B00AE  "></div>
+        <div class="option" style="background-color: #6F00D2  "></div>
+        <div class="option" style="background-color: #8600FF  "></div>
+        <div class="option" style="background-color: #9F35FF  "></div>
+        <div class="option" style="background-color: #B15BFF  "></div>
+        <div class="option" style="background-color: #BE77FF  "></div>
+        <div class="option" style="background-color: #CA8EFF  "></div>
+        <div class="option" style="background-color: #d3a4ff  "></div>
+        <div class="option" style="background-color: #DCB5FF  "></div>
+        <div class="option" style="background-color: #0000E3	"></div>
+        <div class="option" style="background-color: #2828FF	"></div>
+        <div class="option" style="background-color: #4A4AFF	"></div>
+        <div class="option" style="background-color: #6A6AFF	"></div>
+        <div class="option" style="background-color: #7D7DFF	"></div>
+        <div class="option" style="background-color: #9393FF	"></div>
+        <div class="option" style="background-color: #AAAAFF	"></div><br /><br /><br />
+        <div class="option" style="background-color: #007979	"></div>
+        <div class="option" style="background-color: #009393	"></div>
+        <div class="option" style="background-color: #00AEAE	"></div>
+        <div class="option" style="background-color: #00CACA	"></div>
+        <div class="option" style="background-color: #00E3E3	"></div>
+        <div class="option" style="background-color: #00FFFF	"></div>
+        <div class="option" style="background-color: #80FFFF	"></div>
+        <div class="option" style="background-color: #A6FFFF	 "></div>
+        <div class="option" style="background-color: #019858	"></div>
+        <div class="option" style="background-color: #01B468	"></div>
+        <div class="option" style="background-color: #02C874	 "></div>
+        <div class="option" style="background-color: #02DF82	"></div>
+        <div class="option" style="background-color: #02F78E	"></div>
+        <div class="option" style="background-color: #1AFD9C	"></div>
+        <div class="option" style="background-color: #4EFEB3	"></div>
+        <div class="option" style="background-color: #00BB00  "></div>
+        <div class="option" style="background-color: #00DB00  "></div>
+        <div class="option" style="background-color: #00EC00  "></div>
+        <div class="option" style="background-color: #28FF28  "></div>
+        <div class="option" style="background-color: #53FF53  "></div>
+        <div class="option" style="background-color: #79FF79  "></div>
+        <div class="option" style="background-color: #82D900	"></div>
+        <div class="option" style="background-color: #8CEA00	"></div>
+        <div class="option" style="background-color: #9AFF02	"></div>
+        <div class="option" style="background-color: #A8FF24	"></div>
+        <div class="option" style="background-color: #B7FF4A	"></div>
+        <div class="option" style="background-color: #C2FF68	"></div>
+        <div class="option" style="background-color: #CCFF80	"></div>
+        <div class="option" style="background-color: #D3FF93	"></div>
+        <div class="option" style="background-color: #F9F900	"></div>
+        <div class="option" style="background-color: #FFFF6F	"></div><br /><br /><br />
+        <div class="option" style="background-color: #FFFF93	"></div>
+        <div class="option" style="background-color: #FFFFAA	"></div>
+        <div class="option" style="background-color: #FFFFB9	"></div>
+        <div class="option" style="background-color: #FFDC35	"></div>
+        <div class="option" style="background-color: #FFE153	"></div>
+        <div class="option" style="background-color: #FFE66F	"></div>
+        <div class="option" style="background-color: #FFED97		"></div>
+        <div class="option" style="background-color: #FFC78E	"></div>
+        <div class="option" style="background-color: #FFD1A4	"></div>
+        <div class="option" style="background-color: #FFDCB9	"></div>
+        <div class="option" style="background-color: #FFE4CA	"></div>
+        <div class="option" style="background-color: #FFEEDD	"></div>
+        <div class="option" style="background-color: #ffffff"> </div>
+        <div class="option"style="border:2px solid white"></div>
+        <input type="button"  style="width:80px;height:35px;font-size:25px;"value="清空" onClick="window.location.reload()">
+        
+      </div>
+    <div id="drawline" >
+        <div class="option w"><div style="margin-top: 9.5px; margin-left: 9.5px;
+           width:1px;height:1px;background-color:red"></div></div>
+        <div class="option w"><div style="margin-top:9px;margin-left:9px;
+          width:2px;height:2px;background-color:red;"></div></div>
+        <div class="option w"><div style="margin-top:8.5px;margin-left:8.5px;
+          width:3px;height:3px;background-color:red;"></div></div>
+        <div class="option w active"><div style="margin-top:8px;margin-left:8px;
+          width:4px;height:4px;background-color:red;"></div></div>
+        <div class="option w"><div style="margin-top:7.5px;margin-left:7.5px;
+          width:5px;height:5px;background-color:red;"></div></div>
+        <div class="option w"><div style="margin-top:7px;margin-left:7px;
+          width:6px;height:6px;background-color:red;"></div></div>
+        <div class="option w"><div style="margin-top:6.5px;margin-left:6.5px;
+          width:7px;height:7px;background-color:red;"></div></div>
+        <div class="option w"><div style="margin-top:6px;margin-left:6px;
+          width:8px;height:8px;background-color:red;"></div></div>
+        <div class="option w"><div style="margin-top:5.5px;margin-left:5.5px;
+          width:9px;height:9px;background-color:red;"></div></div>
+             
+    </div>
+    
+    <div id="drawframe" style="text-align:center;"  >
+    <canvas id="drawarea" width="1200" height="480" style="border: 2px solid gray" />
+    </div>
+    <input type="button" id="createImage" value="儲存你所畫的圖" />
+    <div id="Output"></div>
+    </body>
+    </html>
