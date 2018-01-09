@@ -16,9 +16,16 @@
             img.output { border: 2px solid black; }
             #drawarea { cursor: crosshair; }
         </style>
+        <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+        
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
+        <script src="scripts/vendor.js"></script>    
+        
+        
+        <script>if (window.module) module = window.module;</script>
+        
         <script>
-
-          
 
             $(function () {
                 var $dcoloroption = $("#drawcolor .option");
